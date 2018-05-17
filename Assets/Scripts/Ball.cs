@@ -3,30 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Ball : MonoBehaviour {
-    public Vector3  launchVel;
-    Rigidbody ball;
-    AudioSource ballRollingSound;
-    
+	public Vector3  launchVel;
+	Rigidbody ball;
+	AudioSource ballRollingSound;
+	
 
-    // Use this for initialization
-    void Start ()
-    {
-        ball = GetComponent<Rigidbody>();
-        ballRollingSound = GetComponent<AudioSource>();
+	// Use this for initialization
+	void Start ()
+	{
+		
+		ball = GetComponent<Rigidbody>();
+		ball.useGravity = false;
 
-        Launch();
+	
 
-    }
+	}
 
-    public void Launch()
-    {
+	public void Launch(Vector3 velocity)
+	{
+		ball.useGravity = true;
+		
+		ball.velocity = velocity;
 
-        ballRollingSound.Play();
-        ball.velocity = launchVel;
-    }
+		ballRollingSound = GetComponent<AudioSource>();
+		ballRollingSound.Play();
 
-    // Update is called once per frame
-    void Update () {
+	}
+
+	// Update is called once per frame
+	void Update () {
 		
 	}
 }
