@@ -9,9 +9,10 @@ public class Pin : MonoBehaviour
 
     public bool IsStanding()
     {
-        float tiltX = (transform.eulerAngles.x < 180f) ? transform.eulerAngles.x : 360 - transform.eulerAngles.x;
+        float newX = 270f - transform.rotation.eulerAngles.x;
+        float tiltX = (transform.eulerAngles.x < 180f) ? newX : 360 - newX;
         float tiltZ = (transform.eulerAngles.z < 180f) ? transform.eulerAngles.z : 360 - transform.eulerAngles.z;
-        if (tiltX > standingThreshold || tiltZ > standingThreshold)
+        if (tiltX < standingThreshold && tiltZ < standingThreshold)
         {
             return false;
         }
